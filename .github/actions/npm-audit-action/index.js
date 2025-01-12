@@ -20,10 +20,13 @@ async function run() {
       },
     };
 
+    let auditFailed = false;
+
     try {
       await exec.exec('npm audit --json', [], options);
     } catch (error) {
-      core.warning('npm audit found vulnerabilities.');
+      auditFailed = true;
+      core.warning('npm audit found vulnerabilities. Processing the report...');
     }
 
     // Step 3: Parse the audit report
@@ -43,6 +46,11 @@ async function run() {
     } else {
       core.info('No audit report generated. Likely no vulnerabilities found.');
     }
+
+    if (auditFailed) {
+      core.warning('npm audit encountered issues, but the action has completed. Review warnings for details.');
+    }
+
   } catch (error) {
     core.setFailed(`Action failed with error: ${error.message}`);
   }
