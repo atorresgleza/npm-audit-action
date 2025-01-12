@@ -17,6 +17,6 @@ jobs:
 
       # Use the custom npm-audit-action
       - name: Run npm Audit Action
-        uses: ./.github/actions/npm-audit-action
+        uses: ./
         with:
           node-version: '16'
