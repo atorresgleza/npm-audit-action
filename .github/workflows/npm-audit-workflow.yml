@@ -1,0 +1,22 @@
+name: Test npm Audit Action
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  npm-audit:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Use the custom npm-audit-action
+      - name: Run npm Audit Action
+        uses: ./.github/actions/npm-audit-action
+        with:
+          node-version: '16'
