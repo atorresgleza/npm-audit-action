@@ -27,4 +27,4 @@ jobs:
 
       # Run the custom action
       - name: Run npm Audit Action
-        uses: ./
+        uses: atorresgleza/npm-audit-action@v0.1.0-beta
